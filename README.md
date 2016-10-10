@@ -1,4 +1,6 @@
-# README
+# 残留申請 Neo
+
+学生も教員もこれ一つで完結
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
