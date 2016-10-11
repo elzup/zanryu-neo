@@ -13,4 +13,8 @@ class User < ApplicationRecord
   def admin_requests
     @admin_requests ||= Request.where(admin_id: id)
   end
+
+  def admin?
+    is_admin
+  end
 end

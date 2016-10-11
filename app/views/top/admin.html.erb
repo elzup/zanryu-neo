@@ -1,7 +1,11 @@
 <h1>残留申請 Neo</h1>
 
-<p>学生ログインです</p>
-
+<p>教員ログインです</p>
+<h2>Export</h2>
+<div>
+  <%= link_to "#{Date.today.month}月", csvs_path(format: :csv), { target: '_blank' } %>
+  <%= link_to "#{Date.today.month.next}月", csvs_path(format: :csv, next: true), { target: '_blank' } %>
+</div>
 
 <form action="">
   <strong>教員: </strong>
@@ -22,5 +26,5 @@
 <div id="calendar"></div>
 
 <script type="text/javascript">
-  <%= render partial: '/shared/calendar.js.erb', locals: { user: current_user, requests: current_user.requests, is_admin: true } %>
+  <%= render partial: '/shared/calendar.js.erb', locals: { user: current_user, requests: @requests, is_admin: true } %>
 </script>

@@ -7,15 +7,20 @@ $('#calendar').fullCalendar({
   editable: true,
   eventStartEditable: false,
   events: [
-    <% user.requests.each do |request| %>
+    <% requests.each do |request| %>
     {
       id: <%= request.id %>,
+      <% if is_admin %>
+      title: '<%= request.user.student_id %>',
+      <% else %>
       title: '<%= "#{request.room.label}(#{request.admin.name})" %>',
+      <% end %>
       start: '<%= request.date.strftime('%Y-%m-%d') %>',
       allDay: true
     },
     <% end %>
   ],
+  <% unless is_admin %>
   dayClick: function(date, jsEvent, view) {
     const room_str = $('[name=room] option:selected').html();
     const admin_str = $('[name=admin] option:selected').html();
@@ -49,4 +54,5 @@ $('#calendar').fullCalendar({
       }
     });
   }
+  <% end %>
 });
