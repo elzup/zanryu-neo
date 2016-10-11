@@ -33,3 +33,4 @@ e = Date.today + 30.day
   )
 end
 puts "Create #{Request.count} Request"
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
