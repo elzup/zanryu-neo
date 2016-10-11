@@ -1,6 +1,6 @@
 $('#calendar').fullCalendar({
   editable: true,
-  disableDragging: true,
+  eventStartEditable: false,
   events: [
     <% requests.each do |request| %>
     {
@@ -9,6 +9,18 @@ $('#calendar').fullCalendar({
       allDay: true
     },
     <% end %>
-  ]
+  ],
+  dayClick: function(date, jsEvent, view) {
+    console.log(date.format('YYYY-MM-DD'));
+    const room_str = $('[name=room] option:selected').html();
+    const admin_str = $('[name=admin] option:selected').html();
+    const title = room_str + "(" + admin_str + ")";
+    $('#calendar').fullCalendar('renderEvent',
+      {
+        title: title,
+        start: date.format('YYYY-MM-DD')
+      }
+    )
+  }
 
 });
