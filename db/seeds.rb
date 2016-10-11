@@ -29,5 +29,5 @@ request = Request.create(
     date: Time.new(2016, 10, 11, 0, 0, 0, 0)
 
 )
-admin_user.requests << request
+user.requests << request
 room.requests << request

@@ -2,5 +2,5 @@ ok
 <div id="calendar"></div>
 
 <script type="text/javascript">
-  <%= render :partial => '/shared/calendar.js.erb' %>
+  <%= render partial: '/shared/calendar.js.erb', locals: { requests: current_user.requests } %>
 </script>

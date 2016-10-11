@@ -5,4 +5,8 @@ class User < ApplicationRecord
        :recoverable, :rememberable, :trackable, :validatable, :confirmable
   has_many :rooms
   has_many :requests
+
+  def student_id
+    @student_id ||= email.split('@')[0]
+  end
 end
