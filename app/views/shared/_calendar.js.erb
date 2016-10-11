@@ -1,3 +1,8 @@
+$.ajaxSetup({
+  headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') },
+  beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))}
+});
+
 $('#calendar').fullCalendar({
   editable: true,
   eventStartEditable: false,
@@ -14,13 +19,22 @@ $('#calendar').fullCalendar({
     console.log(date.format('YYYY-MM-DD'));
     const room_str = $('[name=room] option:selected').html();
     const admin_str = $('[name=admin] option:selected').html();
+    const room_id = $('#room').val();
+    const admin_id = $('#admin').val();
     const title = room_str + "(" + admin_str + ")";
-    $('#calendar').fullCalendar('renderEvent',
-      {
-        title: title,
-        start: date.format('YYYY-MM-DD')
-      }
-    )
+    $.post('/requests',
+        {
+          'admin_id': admin_id,
+          'room_id': room_id
+        },
+        function(response) {
+          console.log(response);
+          $('#calendar').fullCalendar('renderEvent', { title: title, start: date.format('YYYY-MM-DD') } )
+        }
+    );
+  },
+  eventClick: function( event, jsEvent, view ) {
+
   }
 
 });
