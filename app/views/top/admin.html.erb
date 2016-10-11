@@ -4,7 +4,7 @@
 <h2>Export</h2>
 <div>
   <%= link_to "#{Date.today.month}月", csvs_path(format: :csv), { target: '_blank' } %>
-  <%= link_to "#{Date.today.month.next}月", csvs_path(format: :csv), { target: '_blank' } %>
+  <%= link_to "#{Date.today.month.next}月", csvs_path(format: :csv, next: true), { target: '_blank' } %>
 </div>
 
 <form action="">
