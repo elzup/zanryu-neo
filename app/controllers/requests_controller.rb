@@ -1,4 +1,5 @@
 class RequestsController < ApplicationController
+  before_action :set_room, only: [:destroy]
 
   def create
     user = User.find(params[:user_id])
@@ -14,6 +15,14 @@ class RequestsController < ApplicationController
   end
 
   def destroy
+    @request.destroy
+    render json: @request
+  end
+
+  private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_room
+    @request = Request.find(params[:id])
   end
 
 end

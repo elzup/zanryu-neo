@@ -9,6 +9,7 @@ $('#calendar').fullCalendar({
   events: [
     <% user.requests.each do |request| %>
     {
+      id: <%= request.id %>,
       title: '<%= "#{request.room.label}(#{request.admin.name})" %>',
       start: '<%= request.date.strftime('%Y-%m-%d') %>',
       allDay: true
@@ -29,12 +30,23 @@ $('#calendar').fullCalendar({
           'date_str': date.format('YYYY-MM-DD')
         },
         function(response) {
-          console.log(response);
-          $('#calendar').fullCalendar('renderEvent', { title: title, start: date.format('YYYY-MM-DD') } )
+          $('#calendar').fullCalendar('renderEvent',
+              {
+                id: response.id,
+                title: title,
+                start: date.format('YYYY-MM-DD'),
+                allDay: true
+              })
         }
     );
   },
-  eventClick: function( event, jsEvent, view ) {
+  eventClick: function(calEvent, jsEvent, view) {
+    $.ajax({
+      url: '/requests/' + calEvent.id,
+      method: 'DELETE',
+      success: function(response) {
+        $('#calendar').fullCalendar('removeEvents', calEvent.id);
+      }
+    });
   }
-
 });
