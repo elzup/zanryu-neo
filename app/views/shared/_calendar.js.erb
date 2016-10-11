@@ -1,0 +1,52 @@
+$.ajaxSetup({
+  headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') },
+  beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))}
+});
+
+$('#calendar').fullCalendar({
+  editable: true,
+  eventStartEditable: false,
+  events: [
+    <% user.requests.each do |request| %>
+    {
+      id: <%= request.id %>,
+      title: '<%= "#{request.room.label}(#{request.admin.name})" %>',
+      start: '<%= request.date.strftime('%Y-%m-%d') %>',
+      allDay: true
+    },
+    <% end %>
+  ],
+  dayClick: function(date, jsEvent, view) {
+    const room_str = $('[name=room] option:selected').html();
+    const admin_str = $('[name=admin] option:selected').html();
+    const room_id = $('#room').val();
+    const admin_id = $('#admin').val();
+    const title = room_str + "(" + admin_str + ")";
+    $.post('/requests',
+        {
+          'user_id': <%= user.id %>,
+          'admin_id': admin_id,
+          'room_id': room_id,
+          'date_str': date.format('YYYY-MM-DD')
+        },
+        function(response) {
+          $('#calendar').fullCalendar('renderEvent',
+              {
+                id: response.id,
+                title: title,
+                start: date.format('YYYY-MM-DD'),
+                allDay: true
+              })
+        }
+    );
+  },
+  eventClick: function(calEvent, jsEvent, view) {
+    $.ajax({
+      url: '/requests/' + calEvent.id,
+      method: 'DELETE',
+      success: function(response) {
+        $('#calendar').fullCalendar('removeEvents', calEvent.id);
+      }
+    });
+  }
+});
