@@ -22,9 +22,14 @@ room = Room.new(:label => '教室', :code => 'aaa111')
 room.save!
 puts 'Create 1 Room'
 
-request = Request.create(
-    date: Time.new(2016, 10, 11, 0, 0, 0, 0),
-    admin_id: admin_user.id
-)
-user.requests << request
-room.requests << request
+s = Date.today - 10.day
+e = Date.today + 30.day
+(s..e).step(1) do |d|
+  Request.create(
+      date: d,
+      user_id: user.id,
+      room_id: room.id,
+      admin_id: admin_user.id
+  )
+end
+puts "Create #{Request.count} Request"

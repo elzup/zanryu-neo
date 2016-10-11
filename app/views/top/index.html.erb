@@ -1,4 +1,15 @@
 <h1>残留申請 Neo</h1>
+<% if current_user.admin? %>
+
+    <p>教員ログインです</p>
+    <h2>Export</h2>
+    <div>
+      <%= link_to "#{Date.today.month}月", csvs_path(format: :csv), { target: '_blank' } %>
+      <%= link_to "#{Date.today.month.next}月", csvs_path(format: :csv), { target: '_blank' } %>
+    </div>
+<% else %>
+    学生ログインです
+<% end %>
 
 <form action="">
   <strong>教員: </strong>
