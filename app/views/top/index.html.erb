@@ -1,5 +1,6 @@
 ok
 <div id="calendar"></div>
-<%= javascript_tag do %>
-    $('#calendar').fullCalendar({});
-<% end %>
+
+<script type="text/javascript">
+  <%= render :partial => '/shared/calendar.js.erb' %>
+</script>

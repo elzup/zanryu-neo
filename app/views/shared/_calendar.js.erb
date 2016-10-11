@@ -1,0 +1,26 @@
+$('#calendar').fullCalendar({
+  editable: true,
+  disableDragging: true,
+  events: [
+    {
+      title: 'Party Event in Hamburg',
+      start: '2016-10-11',
+      address_city: 'Hamburg',
+      kind: 'Party',
+    },
+    {
+      title: 'Conzert Event in Hamburg',
+      start: '2016-10-15',
+      address_city: 'Hamburg',
+      kind: 'Concert',
+    },
+    {
+      title: 'Festival Event in Schleswig-Holstein',
+      start: '2016-10-1',
+      end: '2016-10-5',
+      address_city: 'Schleswig-Holstein',
+      kind: 'Festival',
+    },
+  ],
+  
+});
