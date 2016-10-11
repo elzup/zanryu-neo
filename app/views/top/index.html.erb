@@ -19,5 +19,5 @@
 <div id="calendar"></div>
 
 <script type="text/javascript">
-  <%= render partial: '/shared/calendar.js.erb', locals: { requests: current_user.requests } %>
+  <%= render partial: '/shared/calendar.js.erb', locals: { user: current_user } %>
 </script>

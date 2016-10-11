@@ -26,13 +26,13 @@ admin_user.skip_confirmation!
 admin_user.save!
 puts 'Create 1 Admin User'
 
-room = admin_user.rooms.new(:label => '教室', :code => 'aaa111')
+room = Room.new(:label => '教室', :code => 'aaa111')
 room.save!
 puts 'Create 1 Room'
 
 request = Request.create(
-    date: Time.new(2016, 10, 11, 0, 0, 0, 0)
-
+    date: Time.new(2016, 10, 11, 0, 0, 0, 0),
+    admin_id: admin_user.id
 )
 user.requests << request
 room.requests << request

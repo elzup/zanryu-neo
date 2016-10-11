@@ -7,16 +7,15 @@ $('#calendar').fullCalendar({
   editable: true,
   eventStartEditable: false,
   events: [
-    <% requests.each do |request| %>
+    <% user.requests.each do |request| %>
     {
-      title: '<%= request.room.label %>',
+      title: '<%= "#{request.room.label}(#{request.admin.name})" %>',
       start: '<%= request.date.strftime('%Y-%m-%d') %>',
       allDay: true
     },
     <% end %>
   ],
   dayClick: function(date, jsEvent, view) {
-    console.log(date.format('YYYY-MM-DD'));
     const room_str = $('[name=room] option:selected').html();
     const admin_str = $('[name=admin] option:selected').html();
     const room_id = $('#room').val();
@@ -24,8 +23,10 @@ $('#calendar').fullCalendar({
     const title = room_str + "(" + admin_str + ")";
     $.post('/requests',
         {
+          'user_id': <%= user.id %>,
           'admin_id': admin_id,
-          'room_id': room_id
+          'room_id': room_id,
+          'date_str': date.format('YYYY-MM-DD')
         },
         function(response) {
           console.log(response);
@@ -34,7 +35,6 @@ $('#calendar').fullCalendar({
     );
   },
   eventClick: function( event, jsEvent, view ) {
-
   }
 
 });
