@@ -7,22 +7,6 @@
   <%= link_to "#{Date.today.month.next}月", csvs_path(format: :csv, next: true), { target: '_blank' } %>
 </div>
 
-<form action="">
-  <strong>教員: </strong>
-  <select name="admin" id="admin">
-    <% @professors.each do |pro| %>
-        <option value="<%= pro.id %>"><%= pro.name %></option>
-    <% end %>
-  </select>
-
-  <strong>教室: </strong>
-  <select name="room" id="room">
-    <% @rooms.each do |room| %>
-        <option value="<%= room.id %>"><%= room.label %></option>
-    <% end %>
-  </select>
-</form>
-
 <div id="calendar"></div>
 
 <script type="text/javascript">
