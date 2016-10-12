@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 20161011141140) do
     t.index ["date"], name: "index_requests_on_date"
     t.index ["room_id"], name: "index_requests_on_room_id"
     t.index ["user_id"], name: "index_requests_on_user_id"
-    t.index [nil, nil, "date"], name: "index_requests_on_user_and_room_and_date", unique: true
+    t.index [nil, nil, nil, "date"], name: "index_requests_on_user_and_admin_and_room_and_date", unique: true
     t.index [nil], name: "index_requests_on_admin"
     t.index [nil], name: "index_requests_on_user"
   end
