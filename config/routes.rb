@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'top#index'
   resources :requests
-  resources :csvs do
-  end
+  post 'requests/all' => 'requests#create_all'
+  delete 'requests/all' => 'requests#destroy_all'
+
+  resources :csvs
 
 end

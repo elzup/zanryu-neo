@@ -17,10 +17,11 @@
         <option value="<%= room.id %>"><%= room.label %></option>
     <% end %>
   </select>
+  <%= link_to 'ALL', '#', id: 'all-on' %>
 </form>
 
 <div id="calendar"></div>
 
 <script type="text/javascript">
-  <%= render partial: '/shared/calendar.js.erb', locals: { user: current_user, requests: current_user.requests, is_admin: true } %>
+  <%= render partial: '/shared/calendar.js.erb', locals: { user: current_user, requests: current_user.requests, is_admin: false } %>
 </script>

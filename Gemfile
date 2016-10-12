@@ -35,6 +35,8 @@ gem 'dotenv-rails'
 gem 'fullcalendar-rails'
 gem 'momentjs-rails'
 
+gem 'activerecord-import'
+
 # admin
 gem 'activeadmin', github: 'activeadmin'
 gem 'inherited_resources', github: 'activeadmin/inherited_resources'
