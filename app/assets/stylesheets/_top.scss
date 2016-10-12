@@ -1,0 +1,9 @@
+
+#calendar {
+  .fc-toolbar {
+    button {
+      @extend .btn, .btn-default;
+      padding: 0 0.6em;
+    }
+  }
+}
