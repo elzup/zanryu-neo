@@ -1,14 +1,25 @@
 <h1>残留申請 Neo</h1>
 
-<p>教員ログインです</p>
-<h2>Export</h2>
-<div>
-  <%= link_to "#{Date.today.month}月", csvs_path(format: :csv), { target: '_blank' } %>
-  <%= link_to "#{Date.today.month.next}月", csvs_path(format: :csv, next: true), { target: '_blank' } %>
+<div class="row">
+  <div class="col-sm-8">
+    <h2>Export</h2>
+    <div>
+      <%= link_to "#{Date.today.month}月", csvs_path(format: :csv), { target: '_blank', class: 'btn btn-primary' } %>
+      <%= link_to "#{Date.today.month.next}月", csvs_path(format: :csv, next: true), { target: '_blank', class: 'btn btn-primary' } %>
+    </div>
+  </div>
+  <div class="pull-right col-sm-4">
+    <p><%= current_user.student_id %>(教員)</p>
+    <p><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'btn btn-default' %></p>
+  </div>
 </div>
+
+<hr>
 
 <div id="calendar"></div>
 
 <script type="text/javascript">
   <%= render partial: '/shared/calendar.js.erb', locals: { user: current_user, requests: @requests, is_admin: true } %>
 </script>
+
+<hr>
