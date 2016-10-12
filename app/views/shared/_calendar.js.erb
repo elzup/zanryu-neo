@@ -35,6 +35,9 @@ $('#calendar').fullCalendar({
           'date_str': date.format('YYYY-MM-DD')
         },
         function(response) {
+          if (response.error) {
+            return;
+          }
           $('#calendar').fullCalendar('renderEvent',
               {
                 id: response.id,
