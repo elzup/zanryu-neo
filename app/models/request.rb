@@ -5,8 +5,9 @@ class Request < ApplicationRecord
   belongs_to :admin, :class_name => 'User'
   belongs_to :room
 
-  scope :current_month, -> { where(date: Time.now.at_beginning_of_month..Time.now.at_end_of_month) }
-  scope :next_month, -> { where(date: Time.now.next_month.at_beginning_of_month..Time.now.next_month.at_end_of_month) }
+  scope :month, -> (month) { where(date: month.at_beginning_of_month..month.at_end_of_month) }
+  scope :current_month, -> { month(Time.now) }
+  scope :next_month, -> { month(Time.now.next_month) }
 
   def self.to_csv(requests)
     headers = %w(No 残留日 残留者ユーザID 場所コード 建物コード 理由 その他 申請日 申請者ユーザID Ｒ更新者 Ｒ更新日付 Ｒ更新時刻)

@@ -77,7 +77,16 @@ $('#all-on').click(function() {
         'month': m.format('MM')
       },
       function(response) {
-        console.log(response)
+        for (var i = 0; i < response.length; i++) {
+          const r = response[i];
+          $('#calendar').fullCalendar('renderEvent',
+              {
+                id: r.id,
+                title: title,
+                start: r.date,
+                allDay: true
+              })
+        }
       }
   );
 });

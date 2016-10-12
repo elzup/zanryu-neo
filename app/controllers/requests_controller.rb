@@ -25,11 +25,12 @@ class RequestsController < ApplicationController
     user = User.find(params[:user_id])
     admin = User.find(params[:admin_id])
     room = Room.find(params[:room_id])
-    year = params[:year]
-    month = params[:month]
-    t = Date.new(year.to_i, month.to_i, 1)
+    year = params[:year].to_i
+    month = params[:month].to_i
+    t = Date.new(year, month, 1)
+    register_dates = Request.select(:date).month(t).map(&:date)
     requests = []
-    (t..t.at_end_of_month).step(1) do |d|
+    ((t..t.at_end_of_month).step(1.day){}.to_a - register_dates).each do |d|
       requests << Request.new(
           date: d.strftime('%Y-%m-%d'),
           user_id: user.id,
@@ -37,8 +38,8 @@ class RequestsController < ApplicationController
           room_id: room.id,
       )
     end
-    r = Request.import requests
-    render json: r
+    Request.import(requests)
+    render json: requests
   end
 
   def destroy_all
