@@ -8,18 +8,18 @@ $bootstrap-sass-asset-helper: false !default;
 //
 //## Gray and brand colors for use across Bootstrap.
 
-$gray-base:              #000 !default;
+$gray-base:              #0e1555 !default;
 $gray-darker:            lighten($gray-base, 13.5%) !default; // #222
-$gray-dark:              #212121 !default;
-$gray:                   #666 !default;
-$gray-light:             #bbb !default;
+$gray-dark:              #0e1111 !default;
+$gray:                   #4e1184 !default;
+$gray-light:             #4e1184 !default;
 $gray-lighter:           lighten($gray-base, 93.5%) !default; // #eee
 
-$brand-primary:         #2196F3 !default;
-$brand-success:         #4CAF50 !default;
-$brand-info:            #9C27B0 !default;
-$brand-warning:         #ff9800 !default;
-$brand-danger:          #e51c23 !default;
+$brand-primary:         #0e1555 !default;
+$brand-success:         #4e1184 !default;
+$brand-info:            #932b77 !default;
+$brand-warning:         #fd367e !default;
+$brand-danger:          #e47676 !default;
 
 
 //== Scaffolding
@@ -69,7 +69,7 @@ $line-height-computed:    floor(($font-size-base * $line-height-base)) !default;
 $headings-font-family:    inherit !default;
 $headings-font-weight:    400 !default;
 $headings-line-height:    1.1 !default;
-$headings-color:          #444 !default;
+$headings-color:          #45056e !default;
 
 
 //== Iconography
@@ -146,8 +146,8 @@ $table-border-color:            #ddd !default;
 $btn-font-weight:                normal !default;
 
 $btn-default-color:              #f8f8ff !default;
-$btn-default-bg:                 #181818 !default;
-$btn-default-border:             transparent !default;
+$btn-default-bg:                 #1f024c !default;
+$btn-default-border:             #45056e !default;
 
 $btn-primary-color:              #fff !default;
 $btn-primary-bg:                 $brand-primary !default;
@@ -401,7 +401,7 @@ $navbar-inverse-link-hover-color:           #fff !default;
 $navbar-inverse-link-hover-bg:              transparent !default;
 $navbar-inverse-link-active-color:          $navbar-inverse-link-hover-color !default;
 $navbar-inverse-link-active-bg:             darken($navbar-inverse-bg, 10%) !default;
-$navbar-inverse-link-disabled-color:        #444 !default;
+$navbar-inverse-link-disabled-color:        #45056e !default;
 $navbar-inverse-link-disabled-bg:           transparent !default;
 
 // Inverted navbar brand label
