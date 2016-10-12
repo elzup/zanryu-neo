@@ -1,29 +1,30 @@
-<h2>Sign up</h2>
+<h2>新規登録</h2>
+<p>
+  登録には東京電機大学学生メールアドレスにが必要です。システムの利用を希望する教員は hiro[at]cps.dendai.ac.jp まで連絡ください。
+</p>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+    <%= f.email_field :email, autofocus: true, label: 'メールアドレス' %>
+    <em>学籍番号を含み dendai.ac.jp ドメインであるメールアドレス</em>
   </div>
 
   <div class="field">
-    <%= f.label :password %>
+    <%= f.password_field :password, autocomplete: 'off', label: 'パスワード' %>
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <em>(<%= @minimum_password_length %> 文字以上)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+    <%= f.password_field :password_confirmation, autocomplete: 'off', label: 'パスワード確認' %>
   </div>
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit '登録' %>
+    <%= render 'devise/shared/links' %>
   </div>
 <% end %>
 
-<%= render "devise/shared/links" %>

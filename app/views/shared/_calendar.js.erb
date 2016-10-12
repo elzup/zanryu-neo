@@ -4,8 +4,10 @@ $.ajaxSetup({
 });
 
 $('#calendar').fullCalendar({
+  lang: 'ja',
   editable: true,
   eventStartEditable: false,
+  eventColor: '#45056e',
   events: [
     <% requests.each do |request| %>
     {
@@ -22,10 +24,10 @@ $('#calendar').fullCalendar({
   ],
   <% unless is_admin %>
   dayClick: function(date, jsEvent, view) {
-    const room_str = $('[name=room] option:selected').html();
-    const admin_str = $('[name=admin] option:selected').html();
-    const room_id = $('#room').val();
-    const admin_id = $('#admin').val();
+    const room_str = $('[name=\\[room\\]] option:selected').html();
+    const admin_str = $('[name=\\[admin\\]] option:selected').html();
+    const room_id = $('#_room').val();
+    const admin_id = $('#_admin').val();
     const title = room_str + "(" + admin_str + ")";
     $.post('/requests',
         {
@@ -62,10 +64,10 @@ $('#calendar').fullCalendar({
 
 <% unless is_admin %>
 $('#all-on').click(function() {
-  const room_str = $('[name=room] option:selected').html();
-  const admin_str = $('[name=admin] option:selected').html();
-  const room_id = $('#room').val();
-  const admin_id = $('#admin').val();
+  const room_str = $('[name=\\[room\\]] option:selected').html();
+  const admin_str = $('[name=\\[admin\\]] option:selected').html();
+  const room_id = $('#_room').val();
+  const admin_id = $('#_admin').val();
   const m = $('#calendar').fullCalendar('getDate');
   const title = room_str + "(" + admin_str + ")";
   $.post('/requests/all',
@@ -92,8 +94,8 @@ $('#all-on').click(function() {
 });
 
 $('#all-off').click(function() {
-  const room_id = $('#room').val();
-  const admin_id = $('#admin').val();
+  const room_id = $('#_room').val();
+  const admin_id = $('#_admin').val();
   const m = $('#calendar').fullCalendar('getDate');
   $.post('/requests/all_dell',
       {

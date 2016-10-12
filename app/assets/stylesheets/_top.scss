@@ -1,0 +1,51 @@
+
+#calendar {
+  .fc-toolbar {
+    button {
+      @extend .btn, .btn-default;
+      padding: 0 0.6em;
+    }
+  }
+}
+
+.eyecatch {
+  max-width: 70%;
+}
+
+h1.title {
+  font-size: 40px;
+  i {
+    font-size: 60px;
+    padding-right: 9px;
+    text-shadow: 3px 3px 5px pink
+  }
+}
+
+h2 {
+  font-size: 32px;
+}
+
+.fc-day-header {
+  background-color: $brand-primary;
+  color: #fff;
+
+  &.fc-sat { background-color: $brand-success; }
+  &.fc-sun { background-color: $brand-info; }
+}
+
+
+.fc-day-top {
+  .fc-day-number {
+    color: $brand-primary;
+  }
+  &.fc-sat {
+    .fc-day-number {
+      color: $brand-success;
+    }
+  }
+  &.fc-sun {
+    .fc-day-number {
+      color: $brand-info;
+    }
+  }
+}

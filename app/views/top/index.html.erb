@@ -1,27 +1,21 @@
-<h1>残留申請 Neo</h1>
+<h1 class="title"><%= fa_icon 'ticket' %>残留申請 Neo</h1>
 
-<p>学生ログインです</p>
-
-
-<form action="">
-  <strong>教員: </strong>
-  <select name="admin" id="admin">
-    <% @professors.each do |pro| %>
-        <option value="<%= pro.id %>"><%= pro.name %></option>
+<div class="row">
+  <div class="col-sm-8">
+    <%= bootstrap_form_tag url: '' do |f| %>
+        <%= f.select :admin, @professors.map { |p| [p.name, p.id]}, { label: '教員' }, {} %>
+        <%= f.select :room, @rooms.map { |p| [p.label, p.id]}, { label: '教室' }, {} %>
     <% end %>
-  </select>
-
-  <strong>教室: </strong>
-  <select name="room" id="room">
-    <% @rooms.each do |room| %>
-        <option value="<%= room.id %>"><%= room.label %></option>
-    <% end %>
-  </select>
-  <%= link_to 'REGIST ALL', '#', id: 'all-on' %>
-  <%= link_to 'CANCEL ALL', '#', id: 'all-off' %>
-</form>
+  </div>
+  <div class="pull-right col-sm-4">
+    <p><%= current_user.student_id %>(学生)</p>
+    <p><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'btn btn-default' %></p>
+  </div>
+</div>
 
 <div id="calendar"></div>
+<%= link_to 'REGIST ALL', '#', id: 'all-on', class: 'btn btn-primary' %>
+<%= link_to 'CANCEL ALL', '#', id: 'all-off', class: 'btn btn-primary' %>
 
 <script type="text/javascript">
   <%= render partial: '/shared/calendar.js.erb', locals: { user: current_user, requests: current_user.requests, is_admin: false } %>
