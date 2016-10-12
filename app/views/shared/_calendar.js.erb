@@ -90,4 +90,25 @@ $('#all-on').click(function() {
       }
   );
 });
+
+$('#all-off').click(function() {
+  const room_id = $('#room').val();
+  const admin_id = $('#admin').val();
+  const m = $('#calendar').fullCalendar('getDate');
+  $.post('/requests/all_dell',
+      {
+        'user_id': <%= user.id %>,
+        'admin_id': admin_id,
+        'room_id': room_id,
+        'year': m.format('YYYY'),
+        'month': m.format('MM')
+      },
+      function(response) {
+        for (var i = 0; i < response.length; i++) {
+          const r = response[i];
+          $('#calendar').fullCalendar('removeEvents', r.id);
+        }
+      }
+  );
+});
 <% end %>
