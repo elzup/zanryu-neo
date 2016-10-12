@@ -269,4 +269,10 @@ ActiveAdmin.setup do |config|
   # of those filters by default here.
   #
   # config.include_default_association_filters = true
+
+  config.clear_stylesheets!
+  config.register_stylesheet 'admin/active_admin.css'
+
+  config.clear_javascripts!
+  config.register_javascript 'admin/active_admin.js'
 end
