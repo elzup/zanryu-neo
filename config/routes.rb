@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   root to: 'top#index'
   resources :requests
   post 'requests/all' => 'requests#create_all'
-  delete 'requests/all' => 'requests#destroy_all'
+  post 'requests/all_dell' => 'requests#destroy_all'
 
   resources :csvs
 
