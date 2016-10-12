@@ -35,6 +35,9 @@ $('#calendar').fullCalendar({
           'date_str': date.format('YYYY-MM-DD')
         },
         function(response) {
+          if (response.error) {
+            return;
+          }
           $('#calendar').fullCalendar('renderEvent',
               {
                 id: response.id,
@@ -56,3 +59,26 @@ $('#calendar').fullCalendar({
   }
   <% end %>
 });
+
+<% unless is_admin %>
+$('#all-on').click(function() {
+  const room_str = $('[name=room] option:selected').html();
+  const admin_str = $('[name=admin] option:selected').html();
+  const room_id = $('#room').val();
+  const admin_id = $('#admin').val();
+  const m = $('#calendar').fullCalendar('getDate');
+  const title = room_str + "(" + admin_str + ")";
+  $.post('/requests/all',
+      {
+        'user_id': <%= user.id %>,
+        'admin_id': admin_id,
+        'room_id': room_id,
+        'year': m.format('YYYY'),
+        'month': m.format('MM')
+      },
+      function(response) {
+        console.log(response)
+      }
+  );
+});
+<% end %>
