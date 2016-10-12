@@ -9,11 +9,17 @@
   </head>
 
   <body>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-  <%= yield %>
-  <% if user_signed_in? %>
-      <p><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></p>
+  <% flash.each do |name, msg| %>
+      <div class="alert alert-<%= name == 'notice' ? 'success' : 'danger' %>">
+        <a class="close" data-dismiss="alert">×</a> <!-- アラートダイアログに×ボタンをつける -->
+        <%= msg %>
+      </div>
   <% end %>
+  <div class="container">
+    <%= yield %>
+    <% if user_signed_in? %>
+        <p><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></p>
+    <% end %>
+  </div>
   </body>
 </html>
