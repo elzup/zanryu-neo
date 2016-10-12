@@ -50,13 +50,12 @@ ActiveRecord::Schema.define(version: 20161011141140) do
     t.date     "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["admin_id", "date"], name: "index_requests_on_admin_id_and_date"
     t.index ["admin_id"], name: "index_requests_on_admin_id"
     t.index ["date"], name: "index_requests_on_date"
     t.index ["room_id"], name: "index_requests_on_room_id"
+    t.index ["user_id", "admin_id", "room_id", "date"], name: "index_requests_on_user_id_and_admin_id_and_room_id_and_date", unique: true
     t.index ["user_id"], name: "index_requests_on_user_id"
-    t.index [nil, nil, nil, "date"], name: "index_requests_on_user_and_admin_and_room_and_date", unique: true
-    t.index [nil], name: "index_requests_on_admin"
-    t.index [nil], name: "index_requests_on_user"
   end
 
   create_table "rooms", force: :cascade do |t|

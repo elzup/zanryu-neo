@@ -9,8 +9,7 @@ class CreateRequests < ActiveRecord::Migration[5.0]
       t.timestamps
     end
     add_index :requests, :date
-    add_index :requests, :user
-    add_index :requests, :admin
-    add_index :requests, [:user, :room, :date], unique: true
+    add_index :requests, [:admin_id, :date]
+    add_index :requests, [:user_id, :admin_id, :room_id, :date], unique: true
   end
 end
