@@ -1,8 +1,10 @@
 <h1 class="title"><%= fa_icon 'ticket' %>残留申請 Neo</h1>
 <p>研究生活のクオリティを上げる</p>
 <p>学生、教員ともに残留申請にかかる手間を大きく削減します</p>
-<h3>ログイン</h3>
+<h3>使い方</h3>
+<%= image_tag 'discription.png', class: 'eyecatch' %>
 
+<h3>ログイン</h3>
 <%= bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
     <%= f.email_field :email, label: 'メールアドレス' %>
@@ -23,4 +25,3 @@
     <%= render 'devise/shared/links' %>
   </div>
 <% end %>
-
