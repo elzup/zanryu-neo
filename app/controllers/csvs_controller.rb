@@ -1,9 +1,9 @@
 class CsvsController < ApplicationController
   def index
     unless params[:next]
-      requests = Request.current_month.where(admin_id: current_user.id)
+      requests = Request.current_month.future.where(admin_id: current_user.id)
     else
-      requests = Request.next_month.where(admin_id: current_user.id)
+      requests = Request.next_month.future.where(admin_id: current_user.id)
     end
     csv = Request.to_csv(requests)
     respond_to do |format|
