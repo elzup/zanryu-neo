@@ -17,6 +17,8 @@
 !/log/.keep
 !/tmp/.keep
 
+/config/secrets.yml
+
 .env
 
 # Ignore Byebug command history file.
