@@ -31,7 +31,6 @@ $('#calendar').fullCalendar({
     const title = room_str + "(" + admin_str + ")";
     $.post('/requests',
         {
-          'user_id': <%= user.id %>,
           'admin_id': admin_id,
           'room_id': room_id,
           'date_str': date.format('YYYY-MM-DD')
@@ -72,7 +71,6 @@ $('#all-on').click(function() {
   const title = room_str + "(" + admin_str + ")";
   $.post('/requests/all',
       {
-        'user_id': <%= user.id %>,
         'admin_id': admin_id,
         'room_id': room_id,
         'year': m.format('YYYY'),
@@ -99,7 +97,6 @@ $('#all-off').click(function() {
   const m = $('#calendar').fullCalendar('getDate');
   $.post('/requests/all_dell',
       {
-        'user_id': <%= user.id %>,
         'admin_id': admin_id,
         'room_id': room_id,
         'year': m.format('YYYY'),
@@ -107,8 +104,7 @@ $('#all-off').click(function() {
       },
       function(response) {
         for (var i = 0; i < response.length; i++) {
-          const r = response[i];
-          $('#calendar').fullCalendar('removeEvents', r.id);
+          $('#calendar').fullCalendar('removeEvents', response[i]);
         }
       }
   );
