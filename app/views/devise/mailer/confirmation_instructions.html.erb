@@ -1,5 +1,5 @@
-<p>Welcome <%= @email %>!</p>
+<p><%= @email %>さん Welcome to 残留生活!</p>
 
-<p>You can confirm your account email through the link below:</p>
+<p>以下のリンクからユーザ登録完了が出来ます。</p>
 
 <p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>

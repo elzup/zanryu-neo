@@ -269,6 +269,7 @@ ActiveAdmin.setup do |config|
   # of those filters by default here.
   #
   # config.include_default_association_filters = true
+  config.skip_before_filter :authenticate_user!
 
   config.clear_stylesheets!
   config.register_stylesheet 'admin/active_admin.css'
