@@ -4,42 +4,42 @@ class RequestsController < ApplicationController
   before_action :set_month_date, only: [:create_all, :destroy_all]
 
   def create
-    request = Request.create!(
+    request = current_user.requests.find_or_create_by(
         date: params[:date_str],
-        user_id: current_user.id,
         admin_id: @admin.id,
         room_id: @room.id
     )
+    request.deleted = false
+    request.save!
     render json: request
   rescue ActiveRecord::RecordNotUnique
     render json: { error: 'Already register.' }
   end
 
   def destroy
-    @request.destroy
+    @request.deleted = true
+    @request.save
     render json: @request
   end
 
   def create_all
-    register_dates = current_user.requests.select(:date).month(@d).map(&:date)
     requests = []
-    # 重複チェック、登録積みの申請を除いた日にちだけ
-    ((@d..@d.at_end_of_month).step(1.day){}.to_a - register_dates).each do |d|
-      requests << current_user.requests.new(
+    (@d..@d.at_end_of_month).step do |d|
+      requests << request = current_user.requests.find_or_create_by(
           date: d.strftime('%Y-%m-%d'),
           admin_id: @admin.id,
           room_id: @room.id,
       )
+      request.deleted = false
+      request.save
     end
-    Request.import(requests)
     render json: requests
   end
 
   def destroy_all
-    requests = current_user.requests.month(@d)
-    ids = requests.map(&:id)
-    requests.delete_all
-    render json: ids
+    requests = current_user.requests.month(@d).where(admin_id: params[:admin_id])
+    requests.update_all(deleted: true)
+    render json: requests
   end
 
   private

@@ -12,7 +12,7 @@ class User < ApplicationRecord
   end
 
   def admin_requests
-    @admin_requests ||= Request.where(admin_id: id)
+    @admin_requests ||= Request.where(admin_id: id).live
   end
 
   def admin?
