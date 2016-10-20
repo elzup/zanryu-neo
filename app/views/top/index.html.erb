@@ -18,5 +18,5 @@
 <%= link_to 'CANCEL ALL', '#', id: 'all-off', class: 'btn btn-primary' %>
 
 <script type="text/javascript">
-  <%= render partial: '/shared/calendar.js.erb', locals: { user: current_user, requests: current_user.requests, is_admin: false } %>
+  <%= render partial: '/shared/calendar.js.erb', locals: { user: current_user, requests: @requests, is_admin: false } %>
 </script>

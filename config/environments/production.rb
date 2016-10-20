@@ -16,7 +16,8 @@ Rails.application.configure do
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
-  config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
+  config.public_file_server.enabled = true
+  # config.serve_static_files = false
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
@@ -41,6 +42,7 @@ Rails.application.configure do
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true
+  config.assets.digest = true
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
@@ -82,5 +84,20 @@ Rails.application.configure do
   end
 
   # Do not dump schema after migrations.
+
   config.active_record.dump_schema_after_migration = false
+
+  mailer = Rails.application.secrets.mailer
+  config.action_mailer.default_url_options = { :host => 'localhost' }
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+      enable_starttls_auto: true,
+      address: 'smtp.gmail.com',
+      port: 587,
+      domain: 'gmail.com',
+      user_name: mailer['username'],
+      password: mailer['password'],
+      authentication: 'plain'
+  }
 end

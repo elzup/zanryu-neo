@@ -6,9 +6,9 @@ class RequestsController < ApplicationController
   def create
     request = Request.create!(
         date: params[:date_str],
-        user_id: @user.id,
+        user_id: current_user.id,
         admin_id: @admin.id,
-        room_id: @room.id,
+        room_id: @room.id
     )
     render json: request
   rescue ActiveRecord::RecordNotUnique
@@ -21,12 +21,12 @@ class RequestsController < ApplicationController
   end
 
   def create_all
-    register_dates = Request.select(:date).month(@d).map(&:date)
+    register_dates = current_user.requests.select(:date).month(@d).map(&:date)
     requests = []
+    # 重複チェック、登録積みの申請を除いた日にちだけ
     ((@d..@d.at_end_of_month).step(1.day){}.to_a - register_dates).each do |d|
-      requests << Request.new(
+      requests << current_user.requests.new(
           date: d.strftime('%Y-%m-%d'),
-          user_id: @user.id,
           admin_id: @admin.id,
           room_id: @room.id,
       )
@@ -36,7 +36,10 @@ class RequestsController < ApplicationController
   end
 
   def destroy_all
-    render json: Request.month(@d).destroy_all
+    requests = current_user.requests.month(@d)
+    ids = requests.map(&:id)
+    requests.delete_all
+    render json: ids
   end
 
   private
@@ -46,7 +49,6 @@ class RequestsController < ApplicationController
   end
 
   def set_relations
-    @user = User.find(params[:user_id])
     @admin = User.find(params[:admin_id])
     @room = Room.find(params[:room_id])
   end
