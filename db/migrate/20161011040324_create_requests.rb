@@ -3,7 +3,7 @@ class CreateRequests < ActiveRecord::Migration[5.0]
     create_table :requests do |t|
       t.references :user, foreign_key: true
       t.references :room, foreign_key: true
-      t.references :admin, foreign_key: true
+      t.references :admin
       t.date :date
 
       t.timestamps
