@@ -39,6 +39,7 @@ $('#calendar').fullCalendar({
           if (response.error) {
             return;
           }
+          $('#calendar').fullCalendar('removeEvents', response.id);
           $('#calendar').fullCalendar('renderEvent',
               {
                 id: response.id,
@@ -79,6 +80,7 @@ $('#all-on').click(function() {
       function(response) {
         for (var i = 0; i < response.length; i++) {
           const r = response[i];
+          $('#calendar').fullCalendar('removeEvents', r.id);
           $('#calendar').fullCalendar('renderEvent',
               {
                 id: r.id,
@@ -104,7 +106,7 @@ $('#all-off').click(function() {
       },
       function(response) {
         for (var i = 0; i < response.length; i++) {
-          $('#calendar').fullCalendar('removeEvents', response[i]);
+          $('#calendar').fullCalendar('removeEvents', response[i].id);
         }
       }
   );

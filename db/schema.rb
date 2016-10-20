@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161011141140) do
+ActiveRecord::Schema.define(version: 20161020085915) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -50,6 +50,8 @@ ActiveRecord::Schema.define(version: 20161011141140) do
     t.date     "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean  "deleted"
+    t.boolean  "exported"
     t.index ["admin_id", "date"], name: "index_requests_on_admin_id_and_date"
     t.index ["admin_id"], name: "index_requests_on_admin_id"
     t.index ["date"], name: "index_requests_on_date"

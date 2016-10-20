@@ -9,6 +9,7 @@ class Request < ApplicationRecord
   scope :current_month, -> { month(Time.now) }
   scope :next_month, -> { month(Time.now.next_month) }
   scope :future, -> { where('date >= :date', date: Date.today) }
+  scope :live, -> { where(:deleted => false) }
 
   def self.to_csv(requests)
     headers = %w(No 残留日 残留者ユーザID 場所コード 建物コード 理由 その他 申請日 申請者ユーザID Ｒ更新者 Ｒ更新日付 Ｒ更新時刻)
