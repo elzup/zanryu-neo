@@ -8,7 +8,11 @@ class Request < ApplicationRecord
   scope :month, -> (month) { where(date: month.at_beginning_of_month..month.at_end_of_month) }
   scope :current_month, -> { month(Time.now) }
   scope :next_month, -> { month(Time.now.next_month) }
+  # 当日を含む未来のリクエスト
   scope :future, -> { where('date >= :date', date: Date.today) }
+  # 未 export
+  scope :fresh, -> { where(:exported => false) }
+  # deleted フラグ無し
   scope :live, -> { where(:deleted => false) }
 
   def self.to_csv(requests)

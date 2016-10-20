@@ -48,10 +48,10 @@ ActiveRecord::Schema.define(version: 20161020085915) do
     t.integer  "room_id"
     t.integer  "admin_id"
     t.date     "date"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.boolean  "deleted"
-    t.boolean  "exported"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "deleted",    default: false
+    t.boolean  "exported",   default: false
     t.index ["admin_id", "date"], name: "index_requests_on_admin_id_and_date"
     t.index ["admin_id"], name: "index_requests_on_admin_id"
     t.index ["date"], name: "index_requests_on_date"
