@@ -19,7 +19,7 @@ $('#calendar').fullCalendar({
       <% end %>
       start: '<%= request.date.strftime('%Y-%m-%d') %>',
       allDay: true,
-      className: '<%= request.exported ? :exported : :not_exported %>'
+      className: '<%= request.active? ? :not_exported : :exported %>'
     },
     <% end %>
   ],

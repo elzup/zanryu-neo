@@ -1,0 +1,4 @@
+<p>ID: <%= user.student_id %></p>
+<p>表示名: <%= user.label %></p>
+<p><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'btn btn-default' %></p>
+<p><%= link_to '設定', edit_user_registration_path, class: 'btn btn-default' %></p>
