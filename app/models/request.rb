@@ -15,6 +15,8 @@ class Request < ApplicationRecord
   # deleted フラグ無し
   scope :live, -> { where(:deleted => false) }
 
+  alias_attribute :exported?, :exported
+
   def self.to_csv(requests)
     headers = %w(No 残留日 残留者ユーザID 場所コード 建物コード 理由 その他 申請日 申請者ユーザID Ｒ更新者 Ｒ更新日付 Ｒ更新時刻)
     csv_data = CSV.generate(headers: headers, write_headers: true, force_quotes: true) do |csv|
@@ -36,5 +38,10 @@ class Request < ApplicationRecord
       end
     end
     csv_data.encode(Encoding::SJIS)
+  end
+
+  # export 可能かどうか
+  def active?
+    !self.exported? && self.date >= Date.today
   end
 end
