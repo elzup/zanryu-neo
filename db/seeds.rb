@@ -6,14 +6,6 @@ user = User.new(
 )
 user.skip_confirmation!
 user.save!
-user2 = User.new(
-    :name => 'elzup',
-    :email => '00aa000@ms.dendai.ac.jp',
-    :password => 'toshino',
-    :label => 'elzup'
-)
-user2.skip_confirmation!
-user2.save!
 puts 'Create 1 User'
 
 
@@ -57,7 +49,25 @@ e = Date.today + 30.day
       admin_id: admin.id
   )
 end
+
+10.times do |i|
+  u = User.new(
+      :name => "user#{i}",
+      :email => "00aa#{i}@ms.dendai.ac.jp",
+      :password => 'toshino',
+      :label => "user#{i}"
+  )
+  u.skip_confirmation!
+  u.save!
+  Request.create(
+      date: Date.today,
+      user_id: u.id,
+      room_id: room.id,
+      admin_id: admin.id
+  )
+end
+puts "Create #{Request.count} User"
 puts "Create #{Request.count} Request"
 
-
 AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
+puts "Create #{AdminUser.count} AdminUser"
