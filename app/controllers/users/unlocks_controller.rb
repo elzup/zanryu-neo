@@ -1,4 +1,5 @@
-class AdminUsers::UnlocksController < Devise::UnlocksController
+class Users::UnlocksController < Devise::UnlocksController
+  skip_before_action :authenticate_user!
   # GET /resource/unlock/new
   # def new
   #   super

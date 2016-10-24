@@ -7,15 +7,15 @@
   <%= devise_error_messages! %>
 
   <div class="field">
-    <%= f.email_field :email, autofocus: true, label: 'メールアドレス' %>
-    <em>学籍番号を含み ms.dendai.ac.jp ドメインであるメールアドレス</em>
+    <%= f.email_field :email, autofocus: true, label: 'メールアドレス(学籍番号を含み ms.dendai.ac.jp ドメインであるメールアドレス)' %>
   </div>
 
   <div class="field">
-    <%= f.password_field :password, autocomplete: 'off', label: 'パスワード' %>
-    <% if @minimum_password_length %>
-        <em>(<%= @minimum_password_length %> 文字以上)</em>
-    <% end %><br />
+    <%= f.text_field :label, autofocus: 'off', label: '表示名(教員に分かるが判別できる id など半角英数字)' %>
+  </div>
+
+  <div class="field">
+    <%= f.password_field :password, autocomplete: 'off', label: "パスワード(#{@minimum_password_length}文字以上)" %>
   </div>
 
   <div class="field">
@@ -27,4 +27,3 @@
     <%= render 'devise/shared/links' %>
   </div>
 <% end %>
-

@@ -1,14 +1,16 @@
 user = User.new(
     :name => '歳納京子',
     :email => '99xx999@ms.dendai.ac.jp',
-    :password => 'toshino'
+    :password => 'toshino',
+    :label => 'kyoko'
 )
 user.skip_confirmation!
 user.save!
 user2 = User.new(
     :name => 'elzup',
     :email => '00aa000@ms.dendai.ac.jp',
-    :password => 'toshino'
+    :password => 'toshino',
+    :label => 'elzup'
 )
 user2.skip_confirmation!
 user2.save!
@@ -21,6 +23,7 @@ admin = User.new(
     :password => 'toshino',
     :is_admin => true,
     :admin_code => '123abc',
+    :label => 'iwi'
 )
 admin.skip_confirmation!
 admin.save!
@@ -30,6 +33,7 @@ admin2 = User.new(
     :password => 'toshino',
     :is_admin => true,
     :admin_code => '123abc2',
+    :label => 'test'
 )
 admin2.skip_confirmation!
 admin2.save!
