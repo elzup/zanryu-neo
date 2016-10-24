@@ -12,9 +12,15 @@
   </div>
 </div>
 
-<div id="calendar"></div>
+<p>
+  <%= fa_icon 'comment-o', id: 'async-icon' %>:
+  <span id="async-message"></span>
+</p>
+
 <%= link_to 'まとめて登録', '#', id: 'all-on', class: 'btn btn-primary' %>
 <%= link_to 'まとめて削除', '#', id: 'all-off', class: 'btn btn-primary' %>
+
+<div id="calendar"></div>
 
 <script type="text/javascript">
   <%= render partial: '/shared/calendar.js.erb', locals: { user: current_user, requests: @requests, is_admin: false } %>

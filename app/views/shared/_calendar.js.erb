@@ -3,6 +3,17 @@ $.ajaxSetup({
   beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))}
 });
 
+function async_start() {
+  $('#async-icon').removeClass('fa-comment-o').addClass('fa-refresh fa-spin fa-fw');
+  $('#async-message').html('送信中...');
+}
+
+function async_end(message) {
+  if (!message) { message = '完了'; }
+  $('#async-icon').removeClass('fa-refresh fa-spin fa-fw').addClass('fa-comment-o');
+  $('#async-message').html(message);
+}
+
 $('#calendar').fullCalendar({
   lang: 'ja',
   editable: true,
@@ -25,6 +36,7 @@ $('#calendar').fullCalendar({
   ],
   <% unless is_admin %>
   dayClick: function(date, jsEvent, view) {
+    async_start();
     const room_str = $('[name=\\[room\\]] option:selected').html();
     const admin_str = $('[name=\\[admin\\]] option:selected').html();
     const room_id = $('#_room').val();
@@ -37,6 +49,7 @@ $('#calendar').fullCalendar({
           'date_str': date.format('YYYY-MM-DD')
         },
         function(response) {
+          async_end();
           if (response.error) {
             return;
           }
@@ -52,10 +65,12 @@ $('#calendar').fullCalendar({
     );
   },
   eventClick: function(calEvent, jsEvent, view) {
+    async_start();
     $.ajax({
       url: '/requests/' + calEvent.id,
       method: 'DELETE',
       success: function(response) {
+        async_end();
         $('#calendar').fullCalendar('removeEvents', calEvent.id);
       }
     });
@@ -65,6 +80,7 @@ $('#calendar').fullCalendar({
 
 <% unless is_admin %>
 $('#all-on').click(function() {
+  async_start();
   const room_str = $('[name=\\[room\\]] option:selected').html();
   const admin_str = $('[name=\\[admin\\]] option:selected').html();
   const room_id = $('#_room').val();
@@ -79,6 +95,7 @@ $('#all-on').click(function() {
         'month': m.format('MM')
       },
       function(response) {
+        async_end();
         for (var i = 0; i < response.length; i++) {
           const r = response[i];
           $('#calendar').fullCalendar('removeEvents', r.id);
@@ -95,6 +112,7 @@ $('#all-on').click(function() {
 });
 
 $('#all-off').click(function() {
+  async_start();
   const room_id = $('#_room').val();
   const admin_id = $('#_admin').val();
   const m = $('#calendar').fullCalendar('getDate');
@@ -106,6 +124,7 @@ $('#all-off').click(function() {
         'month': m.format('MM')
       },
       function(response) {
+        async_end();
         for (var i = 0; i < response.length; i++) {
           $('#calendar').fullCalendar('removeEvents', response[i].id);
         }

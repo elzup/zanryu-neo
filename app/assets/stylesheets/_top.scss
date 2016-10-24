@@ -1,5 +1,6 @@
 
 #calendar {
+  margin: 1em 0;
   .fc-toolbar {
     button {
       @extend .btn, .btn-default;
@@ -62,10 +63,6 @@ a.exported {
 
 .fc-other-month {
   background: #9c9c9c;
-}
-
-#calendar {
-  margin-bottom: 1em;
 }
 
 .userinfos {
