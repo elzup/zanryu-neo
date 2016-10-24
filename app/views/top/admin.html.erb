@@ -9,8 +9,8 @@
     </div>
   </div>
   <div class="pull-right col-sm-4">
-    <p><%= current_user.student_id %>(教員)</p>
-    <p><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'btn btn-default' %></p>
+    <p><strong>教員ログイン中</strong></p>
+    <%= render partial: '/shared/userinfo', locals: { user: current_user } %>
   </div>
 </div>
 

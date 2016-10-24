@@ -6,7 +6,7 @@ class User < ApplicationRecord
   has_many :requests
   scope :admin, -> { where('is_admin': true) }
   validates :email, presence: true, email: true
-  validates :label, presence: true, format: { with: /\A[a-zA-Z]+\z/ }
+  validates :label, presence: true, format: { with: /\A[a-zA-Z0-9]+\z/ }
 
   def student_id
     @student_id ||= email.split('@')[0]

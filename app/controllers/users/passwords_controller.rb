@@ -1,5 +1,6 @@
 class Users::PasswordsController < Devise::PasswordsController
   skip_before_action :authenticate_user!
+  skip_before_action :check_complete_userinfo!
   # GET /resource/password/new
   # def new
   #   super
