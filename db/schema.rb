@@ -87,7 +87,7 @@ ActiveRecord::Schema.define(version: 20161024015109) do
     t.string   "admin_code"
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
-    t.string   "label"
+    t.string   "label",                  default: ""
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
