@@ -7,14 +7,14 @@
         <%= f.select :room, @rooms.map { |p| [p.label, p.id]}, { label: '教室' }, {} %>
     <% end %>
   </div>
-  <div class="pull-right col-sm-4">
+  <div class="pull-right col-sm-4 userinfos">
     <%= render partial: '/shared/userinfo', locals: { user: current_user } %>
   </div>
 </div>
 
 <div id="calendar"></div>
-<%= link_to 'REGIST ALL', '#', id: 'all-on', class: 'btn btn-primary' %>
-<%= link_to 'CANCEL ALL', '#', id: 'all-off', class: 'btn btn-primary' %>
+<%= link_to 'まとめて登録', '#', id: 'all-on', class: 'btn btn-primary' %>
+<%= link_to 'まとめて削除', '#', id: 'all-off', class: 'btn btn-primary' %>
 
 <script type="text/javascript">
   <%= render partial: '/shared/calendar.js.erb', locals: { user: current_user, requests: @requests, is_admin: false } %>

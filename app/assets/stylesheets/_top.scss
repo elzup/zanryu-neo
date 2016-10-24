@@ -26,7 +26,8 @@ h2 {
 }
 
 a.exported {
-  background: #e7c2ff !important;
+
+  background: #a0a0a0 !important;
   border-color: #b7b7b7 !important;
 }
 
@@ -61,4 +62,16 @@ a.exported {
 
 .fc-other-month {
   background: #9c9c9c;
+}
+
+#calendar {
+  margin-bottom: 1em;
+}
+
+.userinfos {
+  display: flex;
+  flex-wrap: wrap;
+  p {
+    margin-left: 1em;
+  }
 }
