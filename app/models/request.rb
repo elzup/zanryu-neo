@@ -12,6 +12,7 @@ class Request < ApplicationRecord
   scope :future, -> { where('date >= :date', date: Date.today) }
   # 未 export
   scope :fresh, -> { where(:exported => false) }
+  scope :not_fresh, -> { where(:exported => true) }
   # deleted フラグ無し
   scope :live, -> { where(:deleted => false) }
 

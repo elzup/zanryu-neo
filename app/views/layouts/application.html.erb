@@ -10,7 +10,7 @@
 
   <body>
   <% flash.each do |name, msg| %>
-      <div class="alert alert-<%= name == 'notice' ? 'success' : 'danger' %>">
+      <div class="alert alert-<%= name == 'notice' ? 'success' : name %>">
         <a class="close" data-dismiss="alert">×</a> <!-- アラートダイアログに×ボタンをつける -->
         <%= msg %>
       </div>

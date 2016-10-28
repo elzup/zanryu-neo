@@ -42,6 +42,20 @@ class RequestsController < ApplicationController
     render json: requests
   end
 
+  def reactive_all
+    unless current_user.admin?
+      render json: { error: '404 error' }, status: 404
+    end
+    unless params[:next]
+      requests = current_user.admin_requests.current_month.not_fresh
+    else
+      requests = current_user.admin_requests.next_month.not_fresh
+    end
+    requests.update_all(exported: false)
+    flash[:success] = "#{requests.size} 個のリクエストを未エクスポートに戻しました。"
+    redirect_to root_path
+  end
+
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_request

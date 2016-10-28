@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :requests
   post 'requests/all' => 'requests#create_all'
   post 'requests/all_dell' => 'requests#destroy_all'
+  post 'requests/reactive_all' => 'requests#reactive_all'
 
   devise_for :users, :controllers => {
       :confirmations => 'users/confirmations',

@@ -79,7 +79,7 @@ $('#calendar').fullCalendar({
 });
 
 <% unless is_admin %>
-$('#all-on').click(function() {
+function all_on () {
   async_start();
   const room_str = $('[name=\\[room\\]] option:selected').html();
   const admin_str = $('[name=\\[admin\\]] option:selected').html();
@@ -109,9 +109,9 @@ $('#all-on').click(function() {
         }
       }
   );
-});
+}
 
-$('#all-off').click(function() {
+function all_off () {
   async_start();
   const room_id = $('#_room').val();
   const admin_id = $('#_admin').val();
@@ -130,5 +130,5 @@ $('#all-off').click(function() {
         }
       }
   );
-});
+}
 <% end %>

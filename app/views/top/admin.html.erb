@@ -2,10 +2,14 @@
 
 <div class="row">
   <div class="col-sm-8">
-    <h2>Export</h2>
+    <h2>コントロール</h2>
     <div>
-      <%= link_to "#{Date.today.month}月ダウンロード", csvs_path(format: :csv), { target: '_blank', class: 'btn btn-primary' } %>
-      <%= link_to "#{Date.today.month.next}月ダウンロード", csvs_path(format: :csv, next: true), { target: '_blank', class: 'btn btn-primary' } %>
+      <% cm = Date.today.month %>
+      <% nm = Date.today.month.next %>
+      <%= link_to "#{cm}月ダウンロード", csvs_path(format: :csv), { class: 'btn btn-primary' } %>
+      <%= link_to "#{nm}月ダウンロード", csvs_path(format: :csv, next: true), { class: 'btn btn-primary' } %>
+      <%= link_to "#{cm}月エクスポート済みリセット", requests_reactive_all_path, method: :post, class: 'btn btn-primary' %>
+      <%= link_to "#{nm}月エクスポート済みリセット", requests_reactive_all_path(next: true), method: :post, class: 'btn btn-primary' %>
     </div>
   </div>
   <div class="pull-right col-sm-4">
