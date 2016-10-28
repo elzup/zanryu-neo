@@ -1,6 +1,8 @@
 $.ajaxSetup({
-  headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') },
-  beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))}
+  headers: {'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')},
+  beforeSend: function (xhr) {
+    xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))
+  }
 });
 
 function async_start() {
@@ -9,7 +11,9 @@ function async_start() {
 }
 
 function async_end(message) {
-  if (!message) { message = '完了'; }
+  if (!message) {
+    message = '完了';
+  }
   $('#async-icon').removeClass('fa-refresh fa-spin fa-fw').addClass('fa-comment-o');
   $('#async-message').html(message);
 }
@@ -35,7 +39,7 @@ $('#calendar').fullCalendar({
     <% end %>
   ],
   <% unless is_admin %>
-  dayClick: function(date, jsEvent, view) {
+  dayClick: function (date, jsEvent, view) {
     async_start();
     const room_str = $('[name=\\[room\\]] option:selected').html();
     const admin_str = $('[name=\\[admin\\]] option:selected').html();
@@ -48,7 +52,7 @@ $('#calendar').fullCalendar({
           'room_id': room_id,
           'date_str': date.format('YYYY-MM-DD')
         },
-        function(response) {
+        function (response) {
           async_end();
           if (response.error) {
             return;
@@ -64,12 +68,12 @@ $('#calendar').fullCalendar({
         }
     );
   },
-  eventClick: function(calEvent, jsEvent, view) {
+  eventClick: function (calEvent, jsEvent, view) {
     async_start();
     $.ajax({
       url: '/requests/' + calEvent.id,
       method: 'DELETE',
-      success: function(response) {
+      success: function (response) {
         async_end();
         $('#calendar').fullCalendar('removeEvents', calEvent.id);
       }
@@ -79,7 +83,7 @@ $('#calendar').fullCalendar({
 });
 
 <% unless is_admin %>
-function all_on () {
+function all_on() {
   async_start();
   const room_str = $('[name=\\[room\\]] option:selected').html();
   const admin_str = $('[name=\\[admin\\]] option:selected').html();
@@ -94,7 +98,7 @@ function all_on () {
         'year': m.format('YYYY'),
         'month': m.format('MM')
       },
-      function(response) {
+      function (response) {
         async_end();
         for (var i = 0; i < response.length; i++) {
           const r = response[i];
@@ -111,7 +115,7 @@ function all_on () {
   );
 }
 
-function all_off () {
+function all_off() {
   async_start();
   const room_id = $('#_room').val();
   const admin_id = $('#_admin').val();
@@ -123,7 +127,7 @@ function all_off () {
         'year': m.format('YYYY'),
         'month': m.format('MM')
       },
-      function(response) {
+      function (response) {
         async_end();
         for (var i = 0; i < response.length; i++) {
           $('#calendar').fullCalendar('removeEvents', response[i].id);

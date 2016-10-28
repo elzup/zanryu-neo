@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>残留申請 Neo</title>
-    <%= csrf_meta_tags %>
+<head>
+  <title>残留申請 Neo</title>
+  <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all' %>
-    <%= javascript_include_tag 'application' %>
-  </head>
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
+</head>
 
-  <body>
-  <% flash.each do |name, msg| %>
-      <div class="alert alert-<%= name == 'notice' ? 'success' : name %>">
-        <a class="close" data-dismiss="alert">×</a> <!-- アラートダイアログに×ボタンをつける -->
-        <%= msg %>
-      </div>
-  <% end %>
-  <div class="container">
-    <%= yield %>
-  </div>
-  </body>
+<body>
+<% flash.each do |name, msg| %>
+    <div class="alert alert-<%= name == 'notice' ? 'success' : name %>">
+      <a class="close" data-dismiss="alert">×</a> <!-- アラートダイアログに×ボタンをつける -->
+      <%= msg %>
+    </div>
+<% end %>
+<div class="container">
+  <%= yield %>
+</div>
+</body>
 </html>

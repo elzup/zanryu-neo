@@ -6,15 +6,15 @@
     <div>
       <% cm = Date.today.month %>
       <% nm = Date.today.month.next %>
-      <%= link_to "#{cm}月ダウンロード", csvs_path(format: :csv), { class: 'btn btn-primary' } %>
-      <%= link_to "#{nm}月ダウンロード", csvs_path(format: :csv, next: true), { class: 'btn btn-primary' } %>
+      <%= link_to "#{cm}月ダウンロード", csvs_path(format: :csv), {class: 'btn btn-primary'} %>
+      <%= link_to "#{nm}月ダウンロード", csvs_path(format: :csv, next: true), {class: 'btn btn-primary'} %>
       <%= link_to "#{cm}月エクスポート済みリセット", requests_reactive_all_path, method: :post, class: 'btn btn-primary' %>
       <%= link_to "#{nm}月エクスポート済みリセット", requests_reactive_all_path(next: true), method: :post, class: 'btn btn-primary' %>
     </div>
   </div>
   <div class="pull-right col-sm-4">
     <p><strong>教員ログイン中</strong></p>
-    <%= render partial: '/shared/userinfo', locals: { user: current_user } %>
+    <%= render partial: '/shared/userinfo', locals: {user: current_user} %>
   </div>
 </div>
 

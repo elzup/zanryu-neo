@@ -51,8 +51,9 @@ class RequestsController < ApplicationController
     else
       requests = current_user.admin_requests.next_month.not_fresh
     end
+    num = requests.size
     requests.update_all(exported: false)
-    flash[:success] = "#{requests.size} 個のリクエストを未エクスポートに戻しました。"
+    flash[:success] = "#{num} 個のリクエストを未エクスポートに戻しました。"
     redirect_to root_path
   end
 

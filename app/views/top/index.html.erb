@@ -3,12 +3,12 @@
 <div class="row">
   <div class="col-sm-8">
     <%= bootstrap_form_tag url: '' do |f| %>
-        <%= f.select :admin, @professors.map { |p| [p.name, p.id]}, { label: '教員' }, {} %>
-        <%= f.select :room, @rooms.map { |p| [p.label, p.id]}, { label: '教室' }, {} %>
+        <%= f.select :admin, @professors.map { |p| [p.name, p.id] }, {label: '教員'}, {} %>
+        <%= f.select :room, @rooms.map { |p| [p.label, p.id] }, {label: '教室'}, {} %>
     <% end %>
   </div>
   <div class="pull-right col-sm-4 userinfos">
-    <%= render partial: '/shared/userinfo', locals: { user: current_user } %>
+    <%= render partial: '/shared/userinfo', locals: {user: current_user} %>
   </div>
 </div>
 
