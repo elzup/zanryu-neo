@@ -20,7 +20,7 @@ class CsvsController < ApplicationController
     return @filename if @filename
     day = params[:next] ? Date.today.next_month : Date.today
     month_str = day.strftime("%Y%m")
-    timestamp_str = Time.now.to_i.to_s
-    @filename = "#{current_user.label}_#{month_str}_#{timestamp_str}.csv"
+    timestamp_str = Time.now.strftime('t%Y%m%d%H%M%S')
+    @filename = "zanryushinsei#{current_user.label}_#{month_str}_#{timestamp_str}.csv"
   end
 end

@@ -24,7 +24,7 @@ $('#calendar').fullCalendar({
     {
       id: <%= request.id %>,
       <% if is_admin %>
-      title: '<%= request.user.student_id %>',
+      title: '<%= "#{request.room.label}(#{request.user.label})" %>',
       <% else %>
       title: '<%= "#{request.room.label}(#{request.admin.name})" %>',
       <% end %>
