@@ -29,7 +29,7 @@ class Request < ApplicationRecord
             request.room.code,
             request.room.building_code,
             '1',
-            request.user.name,
+            request.user.label,
             '',
             request.admin.admin_code,
             '',
