@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
   has_many :requests
   scope :admin, -> { where('is_admin': true) }
+  scope :students, -> { where.not('is_admin': true) }
   validates :email, presence: true, email: true
   validates :label, presence: true, format: {with: /\A[a-zA-Z0-9]+\z/}
 

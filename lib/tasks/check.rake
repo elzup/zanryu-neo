@@ -10,4 +10,13 @@ namespace :check do
     end
   end
 
+  desc '月末時点で来月の残留申請がないユーザにメールで通知'
+  task :mail_notice_unregisted => :environment do
+    User.students.each do |user|
+      unless user.requests.next_month.empty?
+        next
+      end
+      ApplicationMailer.notice_unregisted(user, Date.today.next_month.month).deliver
+    end
+  end
 end
