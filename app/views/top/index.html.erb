@@ -22,6 +22,15 @@
 
 <div id="calendar"></div>
 
+<div id="description">
+  <p></p>
+  <p>
+    <span>カラー・状態説明:</span>
+    <span class="registed">登録済み(教員未確認)</span>
+    <span class="exported">教員出力済み</span>
+  </p>
+</div>
+
 <script type="text/javascript">
   <%= render partial: '/shared/calendar.js.erb', locals: { user: current_user, requests: @requests, is_admin: false } %>
 </script>
