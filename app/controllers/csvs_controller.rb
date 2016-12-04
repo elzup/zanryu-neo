@@ -7,6 +7,8 @@ class CsvsController < ApplicationController
     end
     csv = Request.to_csv(requests)
     requests.update_all(exported: true)
+    # mail
+    ApplicationMailer.notice_applied(requests, current_user).deliver
     # username_year_month_timestamp.csv
     respond_to do |format|
       format.csv {
