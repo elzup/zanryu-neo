@@ -38,8 +38,6 @@ gem 'momentjs-rails'
 
 gem 'activerecord-import'
 
-gem 'whenever', :require => false
-
 gem 'rb-readline'
 
 # admin
