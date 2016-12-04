@@ -5,9 +5,16 @@
 </head>
 <body>
 <h2>未処理の申請があります</h2>
+<p>本日に登録されている残留申請で未エクスポートの申請が残っています。</p>
+<ul>
+  <% @requests.each do |request| %>
+      <li><%= request.user.label %></li>
+  <% end %>
+</ul>
+
+<p><%= @requests.count %>件</p>
 <p>
-  本日に登録されている残留申請で未エクスポートの申請が残っています。<br />
-  <%= @requests.count %>件
+  残留申請 Neo: <a href="https://zanryu-neo.elzup.com/">https://zanryu-neo.elzup.com/</a>
 </p>
 </body>
 </html>

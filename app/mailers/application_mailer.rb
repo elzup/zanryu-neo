@@ -5,7 +5,6 @@ class ApplicationMailer < ActionMailer::Base
   def unapplied(requests, admin)
     @requests = requests
     print(admin.email)
-    # mail to: admin.email, subject: "記事を投稿しました"
-    mail to: 'guild0105@gmail.com', subject: '残留申請 Neo 未処理通知'
+    mail to: admin.email, subject: '当日未処理通知'
   end
 end
