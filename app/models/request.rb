@@ -5,6 +5,8 @@ class Request < ApplicationRecord
   belongs_to :admin, :class_name => 'User'
   belongs_to :room
 
+  scope :future, -> { where('date >= :date', date: Date.today) }
+  scope :today, -> { where(date: Date.today) }
   scope :month, -> (month) { where(date: month.at_beginning_of_month..month.at_end_of_month) }
   scope :current_month, -> { month(Time.now) }
   scope :next_month, -> { month(Time.now.next_month) }
