@@ -27,9 +27,22 @@ h2 {
 }
 
 a.exported {
-
   background: #a0a0a0 !important;
   border-color: #b7b7b7 !important;
+}
+
+#description {
+  span {
+    padding: 3px 5px;
+  }
+  .registed {
+    background: #45056e;
+    color: white;
+  }
+  .exported {
+    background: #a0a0a0;
+    color: white;
+  }
 }
 
 .fc-day-header {
