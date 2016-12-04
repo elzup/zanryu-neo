@@ -38,6 +38,8 @@ gem 'momentjs-rails'
 
 gem 'activerecord-import'
 
+gem 'rb-readline'
+
 # admin
 gem 'activeadmin', github: 'activeadmin'
 gem 'inherited_resources', github: 'activeadmin/inherited_resources'
