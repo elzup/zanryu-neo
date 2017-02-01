@@ -22,7 +22,6 @@ class ApplicationMailer < ActionMailer::Base
     users.each do |user|
       @user = user
       mail to: user.email, subject: '残留申請Neo教授受理通知'
-      break
     end
   end
 
