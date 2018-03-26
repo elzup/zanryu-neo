@@ -19,7 +19,7 @@ class ApplicationMailer < ActionMailer::Base
     @month = requests.first.date.month
     @admin = admin
     users = requests.map(&:user)
-    users.each do |user|
+    users.uniq.each do |user|
       @user = user
       mail to: user.email, subject: '残留申請Neo教授受理通知'
     end
