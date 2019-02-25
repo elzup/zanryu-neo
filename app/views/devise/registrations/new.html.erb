@@ -1,6 +1,6 @@
 <h2>新規登録</h2>
 <p>
-  登録には東京電機大学学生メールアドレスにが必要です。教員でシステムの利用を希望する方は hiro[at]cps.dendai.ac.jp まで連絡ください。
+  登録には東京電機大学学生メールアドレスが必要です。教員でシステムの利用を希望する方は hiro[at]cps.dendai.ac.jp まで連絡ください。
 </p>
 
 <%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -11,7 +11,7 @@
   </div>
 
   <div class="field">
-    <%= f.text_field :label, autofocus: 'off', label: '表示名(教員に分かるが判別できる id など半角英数字)' %>
+    <%= f.text_field :label, autofocus: 'off', label: '表示名(教員が判別できる id など半角英数字)' %>
   </div>
 
   <div class="field">
